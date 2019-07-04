@@ -1,4 +1,4 @@
-package com.droidman.mvvmdemo;
+package com.droidman.mvvm_mealdb;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

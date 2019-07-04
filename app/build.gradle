@@ -45,9 +45,12 @@ dependencies {
     //Support Design for Coordinator layout
     implementation 'com.android.support:design:28.0.0'
 
-    // FAST networking
-    implementation 'com.amitshekhar.android:android-networking:1.0.2'
-
     //circle image view
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //Retrofit
+    def retrofitVersion = "2.6.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
 }
