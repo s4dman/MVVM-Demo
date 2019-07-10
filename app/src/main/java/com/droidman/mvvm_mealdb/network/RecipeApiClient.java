@@ -38,9 +38,7 @@ public class RecipeApiClient {
     }
 
     public void searchRecipe(String query) {
-
         Call<RecipeResponse> searchCall = Helper.getRestApi().searchRecipe(query);
-
         searchCall.enqueue(new Callback<RecipeResponse>() {
             @Override
             public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
@@ -60,4 +58,22 @@ public class RecipeApiClient {
         });
     }
 
+
+    public void recipeDetails(int recipeId) {
+        Call<RecipeResponse> detailCall = Helper.getRestApi().getRecipe(recipeId);
+        detailCall.enqueue(new Callback<RecipeResponse>() {
+            @Override
+            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Recipe> recipeList = response.body().getRecipeList();
+                    mRecipes.postValue(recipeList);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RecipeResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.toString());
+            }
+        });
+    }
 }

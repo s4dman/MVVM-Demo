@@ -2,33 +2,41 @@ package com.droidman.mvvm_mealdb;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.droidman.mvvm_mealdb.models.Recipe;
-import com.droidman.mvvm_mealdb.models.responses.RecipeResponse;
-import com.droidman.mvvm_mealdb.utils.Helper;
-import com.droidman.mvvm_mealdb.viewmodels.RecipeListViewModel;
+import com.droidman.mvvm_mealdb.viewmodels.SearchRecipeViewModel;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class SearchRecipeActivity extends AppCompatActivity {
     private static final String TAG = "SearchRecipeActivity";
-    private RecipeListViewModel mRecipeListViewModel;
+    private SearchRecipeViewModel mRecipeListViewModel;
+    private Button mButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search_recipe);
 
-        mRecipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
+        mRecipeListViewModel = ViewModelProviders.of(this).get(SearchRecipeViewModel.class);
         subscribeObservers();
         searchRecipe("beef");
+
+        mButton = findViewById(R.id.get_details);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent details = new Intent(SearchRecipeActivity.this, RecipeDetailsActivity.class);
+                startActivity(details);
+            }
+        });
     }
 
     private void subscribeObservers() {
@@ -47,24 +55,4 @@ public class SearchRecipeActivity extends AppCompatActivity {
         mRecipeListViewModel.searchRecipe(query);
     }
 
-    private void getRecipeDetails() {
-        Call<RecipeResponse> detailCall = Helper.getRestApi().getRecipe(52772);
-
-        detailCall.enqueue(new Callback<RecipeResponse>() {
-            @Override
-            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    List<Recipe> recipeList = response.body().getRecipeList();
-                    for (Recipe recipe : recipeList) {
-                        Log.d(TAG, "onResponse: " + recipe.getStrMeal());
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RecipeResponse> call, Throwable t) {
-
-            }
-        });
-    }
 }

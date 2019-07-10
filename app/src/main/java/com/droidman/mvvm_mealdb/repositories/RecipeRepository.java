@@ -32,4 +32,8 @@ public class RecipeRepository {
         mRecipeApiClient.searchRecipe(query);
     }
 
+    public void recipeDetails(int recipeId){
+        mRecipeApiClient.recipeDetails(recipeId);
+    }
+
 }

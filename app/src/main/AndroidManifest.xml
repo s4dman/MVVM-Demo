@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.droidman.mvvm_mealdb" >
+    package="com.droidman.mvvm_mealdb">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name="com.droidman.mvvm_mealdb.SearchRecipeActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".RecipeDetailsActivity"></activity>
+        <activity android:name=".SearchRecipeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,7 +20,5 @@
             </intent-filter>
         </activity>
     </application>
-
-
 
 </manifest>

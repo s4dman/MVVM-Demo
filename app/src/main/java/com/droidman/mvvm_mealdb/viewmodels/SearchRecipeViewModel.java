@@ -8,12 +8,12 @@ import com.droidman.mvvm_mealdb.repositories.RecipeRepository;
 
 import java.util.List;
 
-public class RecipeListViewModel extends ViewModel {
-    private static final String TAG = "RecipeListViewModel";
+public class SearchRecipeViewModel extends ViewModel {
+    private static final String TAG = "SearchRecipeViewModel";
 
     private RecipeRepository mRecipeRepository;
 
-    public RecipeListViewModel() {
+    public SearchRecipeViewModel() {
         mRecipeRepository = RecipeRepository.getInstance();
     }
 
