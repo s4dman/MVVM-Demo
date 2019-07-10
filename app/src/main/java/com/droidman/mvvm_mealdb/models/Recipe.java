@@ -1,4 +1,4 @@
-package com.droidman.mvvm_mealdb.Models;
+package com.droidman.mvvm_mealdb.models;
 
 public class Recipe {
 

@@ -1,6 +1,6 @@
-package com.droidman.mvvm_mealdb.APIs;
+package com.droidman.mvvm_mealdb.apis;
 
-import com.droidman.mvvm_mealdb.Models.Responses.RecipeResponse;
+import com.droidman.mvvm_mealdb.models.responses.RecipeResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -1,6 +1,6 @@
-package com.droidman.mvvm_mealdb.Models.Responses;
+package com.droidman.mvvm_mealdb.models.responses;
 
-import com.droidman.mvvm_mealdb.Models.Recipe;
+import com.droidman.mvvm_mealdb.models.Recipe;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

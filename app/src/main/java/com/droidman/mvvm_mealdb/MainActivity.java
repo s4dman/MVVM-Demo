@@ -1,13 +1,16 @@
 package com.droidman.mvvm_mealdb;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.droidman.mvvm_mealdb.Models.Recipe;
-import com.droidman.mvvm_mealdb.Models.Responses.RecipeResponse;
-import com.droidman.mvvm_mealdb.Utils.Helper;
+import com.droidman.mvvm_mealdb.models.Recipe;
+import com.droidman.mvvm_mealdb.models.responses.RecipeResponse;
+import com.droidman.mvvm_mealdb.utils.Helper;
+import com.droidman.mvvm_mealdb.viewmodels.RecipeListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +21,26 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private RecipeListViewModel mRecipeListViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mRecipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
+
+        subscribeObservers();
         getSearchData();
         getRecipeDetails();
+    }
+
+    private void subscribeObservers() {
+        mRecipeListViewModel.getmRecipes().observe(this, new Observer<List<Recipe>>() {
+            @Override
+            public void onChanged(@Nullable List<Recipe> recipes) {
+                
+            }
+        });
+
     }
 
     private void getSearchData() {
