@@ -21,5 +21,8 @@ public class RecipeListViewModel extends ViewModel {
         return mRecipeRepository.getmRecipes();
     }
 
+    public void searchRecipe(String query){
+        mRecipeRepository.searchRecipe(query);
+    }
 
 }

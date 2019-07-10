@@ -1,4 +1,4 @@
-package com.droidman.mvvm_mealdb.apis;
+package com.droidman.mvvm_mealdb.network.apis;
 
 import com.droidman.mvvm_mealdb.models.responses.RecipeResponse;
 

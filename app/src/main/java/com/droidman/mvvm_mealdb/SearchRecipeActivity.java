@@ -12,67 +12,48 @@ import com.droidman.mvvm_mealdb.models.responses.RecipeResponse;
 import com.droidman.mvvm_mealdb.utils.Helper;
 import com.droidman.mvvm_mealdb.viewmodels.RecipeListViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+public class SearchRecipeActivity extends AppCompatActivity {
+    private static final String TAG = "SearchRecipeActivity";
     private RecipeListViewModel mRecipeListViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mRecipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
 
+        mRecipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
         subscribeObservers();
-        getSearchData();
-        getRecipeDetails();
+        searchRecipe("beef");
     }
 
     private void subscribeObservers() {
         mRecipeListViewModel.getmRecipes().observe(this, new Observer<List<Recipe>>() {
             @Override
             public void onChanged(@Nullable List<Recipe> recipes) {
-                
-            }
-        });
-
-    }
-
-    private void getSearchData() {
-
-        Call<RecipeResponse> searchCall = Helper.getRestApi().searchRecipe("beef");
-
-        searchCall.enqueue(new Callback<RecipeResponse>() {
-            @Override
-            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
-                if(response.isSuccessful() && response.body() != null) {
-                    List<Recipe> recipeList = new ArrayList<>(response.body().getRecipeList());
-                    for (Recipe recipe : recipeList){
-                        Log.d(TAG, "onResponse: " + recipe.getStrMeal());
-                    }
-
+                for (Recipe recipe : recipes) {
+                    Log.d(TAG, "onChanged: " + recipe.getStrMeal());
                 }
             }
-
-            @Override
-            public void onFailure(Call<RecipeResponse> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.toString());
-            }
         });
+
     }
 
-    private void getRecipeDetails(){
+    private void searchRecipe(String query) {
+        mRecipeListViewModel.searchRecipe(query);
+    }
+
+    private void getRecipeDetails() {
         Call<RecipeResponse> detailCall = Helper.getRestApi().getRecipe(52772);
 
         detailCall.enqueue(new Callback<RecipeResponse>() {
             @Override
             public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
-                if (response.isSuccessful() && response.body() != null){
+                if (response.isSuccessful() && response.body() != null) {
                     List<Recipe> recipeList = response.body().getRecipeList();
                     for (Recipe recipe : recipeList) {
                         Log.d(TAG, "onResponse: " + recipe.getStrMeal());

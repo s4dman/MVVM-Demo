@@ -27,4 +27,9 @@ public class RecipeRepository {
     public LiveData<List<Recipe>> getmRecipes() {
         return mRecipeApiClient.getmRecipes();
     }
+
+    public void searchRecipe(String query){
+        mRecipeApiClient.searchRecipe(query);
+    }
+
 }

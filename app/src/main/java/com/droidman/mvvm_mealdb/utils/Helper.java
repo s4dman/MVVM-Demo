@@ -1,6 +1,6 @@
 package com.droidman.mvvm_mealdb.utils;
 
-import com.droidman.mvvm_mealdb.apis.MealDBAPI;
+import com.droidman.mvvm_mealdb.network.apis.MealDBAPI;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
