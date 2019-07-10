@@ -1,2 +1,2 @@
-# MVVM-demo
-Android MVVM design pattern
+# MVVM-MealDB
+Android MVVM design pattern on MealDB
