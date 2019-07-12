@@ -6,4 +6,105 @@
     android:layout_height="match_parent"
     tools:context="com.droidman.mvvm_mealdb.RecipeDetailsActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+       <android.support.constraint.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <ImageView
+               android:id="@+id/img_details"
+               android:layout_width="0dp"
+               android:layout_height="@dimen/recipe_image_height"
+               android:adjustViewBounds="true"
+               android:cropToPadding="false"
+               android:scaleType="centerCrop"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               tools:srcCompat="@tools:sample/backgrounds/scenic[7]" />
+
+           <TextView
+               android:id="@+id/text_details_title"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="16dp"
+               android:layout_marginTop="8dp"
+               android:layout_marginEnd="16dp"
+               android:text="TextView"
+               android:textSize="@dimen/recipe_title_text_size"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/img_details" />
+
+           <TextView
+               android:id="@+id/text_details_origin"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:text="Italian"
+               android:textSize="@dimen/recipe_sub_text_size"
+               app:layout_constraintEnd_toStartOf="@+id/text_details_category"
+               app:layout_constraintHorizontal_bias="0.5"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/text_details_title" />
+
+           <TextView
+               android:id="@+id/text_details_category"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:text="Vegetarian"
+               android:textSize="@dimen/recipe_sub_text_size"
+               app:layout_constraintEnd_toStartOf="@+id/text_details_youtube"
+               app:layout_constraintHorizontal_bias="0.5"
+               app:layout_constraintStart_toEndOf="@+id/text_details_origin"
+               app:layout_constraintTop_toBottomOf="@+id/text_details_title" />
+
+           <TextView
+               android:id="@+id/text_details_youtube"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:clickable="true"
+               android:text="Youtube"
+               android:textSize="@dimen/recipe_sub_text_size"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.5"
+               app:layout_constraintStart_toEndOf="@+id/text_details_category"
+               app:layout_constraintTop_toBottomOf="@+id/text_details_title" />
+
+           <TextView
+               android:id="@+id/text_details_instruction"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="16dp"
+               android:layout_marginTop="32dp"
+               android:layout_marginEnd="16dp"
+               android:text="TextView"
+               android:textSize="@dimen/recipe_sub_text_size"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/text_details_origin" />
+
+           <TextView
+               android:id="@+id/label_details_ingredients"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="16dp"
+               android:layout_marginTop="16dp"
+               android:layout_marginEnd="16dp"
+               android:layout_marginBottom="16dp"
+               android:text="Ingredients"
+               android:textSize="@dimen/recipe_sub_text_size"
+               android:textStyle="bold"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/text_details_instruction" />
+       </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

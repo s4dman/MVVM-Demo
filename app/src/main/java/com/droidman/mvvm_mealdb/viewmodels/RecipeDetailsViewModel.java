@@ -18,7 +18,7 @@ public class RecipeDetailsViewModel extends ViewModel {
     }
 
     public LiveData<List<Recipe>> getmRecipe() {
-        return mRecipeRepository.getmRecipes();
+        return mRecipeRepository.getmRecipe();
     }
 
     public void recipeDetails(int recipeId) {

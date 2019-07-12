@@ -1,6 +1,7 @@
 package com.droidman.mvvm_mealdb.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.droidman.mvvm_mealdb.R;
+import com.droidman.mvvm_mealdb.RecipeDetailsActivity;
 import com.droidman.mvvm_mealdb.models.Recipe;
+import com.droidman.mvvm_mealdb.utils.ItemClickListener;
 
 import java.util.List;
 
@@ -33,16 +36,25 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
 
-         Recipe position = mRecipeList.get(i);
+        final Recipe recipePosition = mRecipeList.get(i);
 
         Glide.with(mContext)
                 .asBitmap()
-                .load(position.getStrMealThumb())
+                .load(recipePosition.getStrMealThumb())
                 .into(viewHolder.recipeImage);
-        viewHolder.recipeTitle.setText(position.getStrMeal());
-        viewHolder.recipeOrigin.setText(position.getStrArea());
+        viewHolder.recipeTitle.setText(recipePosition.getStrMeal());
+        viewHolder.recipeOrigin.setText(recipePosition.getStrArea());
+
+        viewHolder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent detailsIntent = new Intent(mContext, RecipeDetailsActivity.class);
+                detailsIntent.putExtra("RECIPE_ID", recipePosition.getIdMeal());
+                mContext.startActivity(detailsIntent);
+            }
+        });
     }
 
     @Override
@@ -50,16 +62,27 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         return mRecipeList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView recipeImage;
         TextView recipeTitle, recipeOrigin;
+        ItemClickListener itemClickListener;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             recipeImage = itemView.findViewById(R.id.img_search);
             recipeTitle = itemView.findViewById(R.id.text_search_title);
             recipeOrigin = itemView.findViewById(R.id.text_search_origin);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            itemClickListener.onItemClick(v, getLayoutPosition());
+        }
+
+        public void setItemClickListener(ItemClickListener itemClickListener) {
+            this.itemClickListener = itemClickListener;
         }
     }
 }

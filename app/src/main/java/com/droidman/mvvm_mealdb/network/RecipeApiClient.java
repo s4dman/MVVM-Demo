@@ -20,6 +20,7 @@ public class RecipeApiClient {
 
     private static RecipeApiClient instance;
     private MutableLiveData<List<Recipe>> mRecipes;
+    private MutableLiveData<List<Recipe>> mRecipe;
 
 
     public static RecipeApiClient getInstance() {
@@ -31,10 +32,15 @@ public class RecipeApiClient {
 
     public RecipeApiClient() {
         mRecipes = new MutableLiveData<>();
+        mRecipe = new MutableLiveData<>();
     }
 
     public LiveData<List<Recipe>> getmRecipes() {
         return mRecipes;
+    }
+
+    public LiveData<List<Recipe>> getmRecipe() {
+        return mRecipe;
     }
 
     public void searchRecipe(String query) {
@@ -66,7 +72,7 @@ public class RecipeApiClient {
             public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Recipe> recipeList = response.body().getRecipeList();
-                    mRecipes.postValue(recipeList);
+                    mRecipe.postValue(recipeList);
                 }
             }
 
