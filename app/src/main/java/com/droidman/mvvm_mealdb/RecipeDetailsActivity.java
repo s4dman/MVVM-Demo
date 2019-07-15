@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +22,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextView title, origin, category, youtube, instruction;
     private RecipeDetailsViewModel mRecipeDetailsViewModel;
+    private String mRecipeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +31,12 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         mRecipeDetailsViewModel = ViewModelProviders.of(this).get(RecipeDetailsViewModel.class);
         init();
         subscribeObserver();
-        recipeDetails(52952);
+
+        mRecipeId = getIntent().getStringExtra("RECIPE_ID");
+        recipeDetails(Integer.valueOf(mRecipeId));
     }
 
-    private void init(){
+    private void init() {
         imageView = findViewById(R.id.img_details);
         title = findViewById(R.id.text_details_title);
         origin = findViewById(R.id.text_details_origin);
@@ -65,8 +66,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                             startActivity(youtubeIntent);
                         }
                     });
-
-                    // FIXME: 10-Jul-19 Create individual object for each RecipeDetails response
                 }
             }
         });
