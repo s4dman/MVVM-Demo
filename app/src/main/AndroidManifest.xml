@@ -11,8 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchRecipeActivity"></activity>
-        <activity android:name=".RecipeDetailsActivity" />
+        <activity android:name=".SearchRecipeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.droidman.mvvm_mealdb.CategoriesActivity" />
+        </activity>
+        <activity android:name=".RecipeDetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.droidman.mvvm_mealdb.SearchRecipeActivity" />
+        </activity>
         <activity android:name=".CategoriesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
+
 
 </manifest>

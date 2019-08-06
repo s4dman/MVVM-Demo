@@ -52,6 +52,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             public void onItemClick(View view, int position) {
                 Intent detailsIntent = new Intent(mContext, RecipeDetailsActivity.class);
                 detailsIntent.putExtra("RECIPE_ID", recipePosition.getIdMeal());
+                detailsIntent.putExtra("RECIPE_NAME", recipePosition.getStrMeal());
                 mContext.startActivity(detailsIntent);
             }
         });

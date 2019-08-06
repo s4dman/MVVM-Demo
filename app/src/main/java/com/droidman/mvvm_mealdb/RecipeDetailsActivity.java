@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +24,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextView title, origin, category, youtube, instruction;
     private RecipeDetailsViewModel mRecipeDetailsViewModel;
-    private String mRecipeId;
+    private String mRecipeId, mRecipeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,20 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         subscribeObserver();
 
         mRecipeId = getIntent().getStringExtra("RECIPE_ID");
+        mRecipeName = getIntent().getStringExtra("RECIPE_NAME");
+        setTitle(mRecipeName);
         recipeDetails(Integer.valueOf(mRecipeId));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void init() {

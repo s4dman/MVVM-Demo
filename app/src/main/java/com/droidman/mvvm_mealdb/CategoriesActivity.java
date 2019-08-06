@@ -19,6 +19,7 @@ public class CategoriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
+        setTitle("Categories");
 
         mImageUrls.add("https://www.themealdb.com/images/category/beef.png");
         mNames.add("Beef");
