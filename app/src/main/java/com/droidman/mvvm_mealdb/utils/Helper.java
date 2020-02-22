@@ -1,6 +1,6 @@
 package com.droidman.mvvm_mealdb.utils;
 
-import com.droidman.mvvm_mealdb.network.apis.MealDBAPI;
+import com.droidman.mvvm_mealdb.models.services.network.APIs;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,9 +21,9 @@ public class Helper {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    private static MealDBAPI restApi = retrofit.create(MealDBAPI.class);
+    private static APIs restApi = retrofit.create(APIs.class);
 
-    public static MealDBAPI getRestApi() {
+    public static APIs getRestApi() {
         return restApi;
     }
 

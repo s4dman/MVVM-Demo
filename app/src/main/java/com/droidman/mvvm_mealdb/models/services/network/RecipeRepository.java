@@ -1,10 +1,10 @@
-package com.droidman.mvvm_mealdb.network;
+package com.droidman.mvvm_mealdb.models.services.network;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
 
-import com.droidman.mvvm_mealdb.models.Recipe;
+import com.droidman.mvvm_mealdb.models.services.RecipeModel;
 import com.droidman.mvvm_mealdb.models.responses.RecipeResponse;
 import com.droidman.mvvm_mealdb.utils.Helper;
 
@@ -15,31 +15,31 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RecipeApiClient {
-    private static final String TAG = "RecipeApiClient";
+public class RecipeRepository {
+    private static final String TAG = "RecipeRepository";
 
-    private static RecipeApiClient instance;
-    private MutableLiveData<List<Recipe>> mRecipes;
-    private MutableLiveData<List<Recipe>> mRecipe;
+    private static RecipeRepository instance;
+    private MutableLiveData<List<RecipeModel>> mRecipes;
+    private MutableLiveData<List<RecipeModel>> mRecipe;
 
 
-    public static RecipeApiClient getInstance() {
+    public static RecipeRepository getInstance() {
         if (instance == null) {
-            instance = new RecipeApiClient();
+            instance = new RecipeRepository();
         }
         return instance;
     }
 
-    public RecipeApiClient() {
+    public RecipeRepository() {
         mRecipes = new MutableLiveData<>();
         mRecipe = new MutableLiveData<>();
     }
 
-    public LiveData<List<Recipe>> getmRecipes() {
+    public LiveData<List<RecipeModel>> getmRecipes() {
         return mRecipes;
     }
 
-    public LiveData<List<Recipe>> getmRecipe() {
+    public LiveData<List<RecipeModel>> getmRecipe() {
         return mRecipe;
     }
 
@@ -49,8 +49,8 @@ public class RecipeApiClient {
             @Override
             public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<Recipe> recipeList = new ArrayList<>(response.body().getRecipeList());
-                    mRecipes.postValue(recipeList);
+                    List<RecipeModel> recipeModelList = new ArrayList<>(response.body().getRecipeModelList());
+                    mRecipes.postValue(recipeModelList);
                 } else {
                     String error = String.valueOf(response.errorBody());
                     Log.e(TAG, "searchRecipe: " + error);
@@ -71,8 +71,8 @@ public class RecipeApiClient {
             @Override
             public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<Recipe> recipeList = response.body().getRecipeList();
-                    mRecipe.postValue(recipeList);
+                    List<RecipeModel> recipeModelList = response.body().getRecipeModelList();
+                    mRecipe.postValue(recipeModelList);
                 }
             }
 

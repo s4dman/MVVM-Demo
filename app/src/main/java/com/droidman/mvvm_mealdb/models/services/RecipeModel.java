@@ -1,6 +1,6 @@
-package com.droidman.mvvm_mealdb.models;
+package com.droidman.mvvm_mealdb.models.services;
 
-public class Recipe {
+public class RecipeModel {
 
     private String idMeal;
     private String strMeal;

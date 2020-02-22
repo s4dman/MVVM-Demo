@@ -1,11 +1,12 @@
-package com.droidman.mvvm_mealdb;
+package com.droidman.mvvm_mealdb.views;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.droidman.mvvm_mealdb.adapters.CategoriesAdapter;
+import com.droidman.mvvm_mealdb.R;
+import com.droidman.mvvm_mealdb.views.adapters.CategoriesAdapter;
 
 import java.util.ArrayList;
 

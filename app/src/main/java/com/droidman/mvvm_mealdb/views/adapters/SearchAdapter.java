@@ -1,4 +1,4 @@
-package com.droidman.mvvm_mealdb.adapters;
+package com.droidman.mvvm_mealdb.views.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.droidman.mvvm_mealdb.R;
-import com.droidman.mvvm_mealdb.RecipeDetailsActivity;
-import com.droidman.mvvm_mealdb.models.Recipe;
+import com.droidman.mvvm_mealdb.models.services.RecipeModel;
+import com.droidman.mvvm_mealdb.views.RecipeDetailsActivity;
 import com.droidman.mvvm_mealdb.utils.ItemClickListener;
 
 import java.util.List;
@@ -21,11 +21,11 @@ import java.util.List;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
     private Context mContext;
-    private List<Recipe> mRecipeList;
+    private List<RecipeModel> mRecipeModelList;
 
-    public SearchAdapter(Context mContext, List<Recipe> mRecipeList) {
+    public SearchAdapter(Context mContext, List<RecipeModel> mRecipeModelList) {
         this.mContext = mContext;
-        this.mRecipeList = mRecipeList;
+        this.mRecipeModelList = mRecipeModelList;
     }
 
     @NonNull
@@ -38,21 +38,21 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
 
-        final Recipe recipePosition = mRecipeList.get(i);
+        final RecipeModel recipeModelPosition = mRecipeModelList.get(i);
 
         Glide.with(mContext)
                 .asBitmap()
-                .load(recipePosition.getStrMealThumb())
+                .load(recipeModelPosition.getStrMealThumb())
                 .into(viewHolder.recipeImage);
-        viewHolder.recipeTitle.setText(recipePosition.getStrMeal());
-        viewHolder.recipeOrigin.setText(recipePosition.getStrArea());
+        viewHolder.recipeTitle.setText(recipeModelPosition.getStrMeal());
+        viewHolder.recipeOrigin.setText(recipeModelPosition.getStrArea());
 
         viewHolder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Intent detailsIntent = new Intent(mContext, RecipeDetailsActivity.class);
-                detailsIntent.putExtra("RECIPE_ID", recipePosition.getIdMeal());
-                detailsIntent.putExtra("RECIPE_NAME", recipePosition.getStrMeal());
+                detailsIntent.putExtra("RECIPE_ID", recipeModelPosition.getIdMeal());
+                detailsIntent.putExtra("RECIPE_NAME", recipeModelPosition.getStrMeal());
                 mContext.startActivity(detailsIntent);
             }
         });
@@ -60,7 +60,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return mRecipeList.size();
+        return mRecipeModelList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

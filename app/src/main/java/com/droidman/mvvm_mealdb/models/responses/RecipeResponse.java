@@ -1,6 +1,6 @@
 package com.droidman.mvvm_mealdb.models.responses;
 
-import com.droidman.mvvm_mealdb.models.Recipe;
+import com.droidman.mvvm_mealdb.models.services.RecipeModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 public class RecipeResponse {
 
     @SerializedName("meals")
-    private List<Recipe> recipeList;
+    private List<RecipeModel> recipeModelList;
 
-    public List<Recipe> getRecipeList() {
-        return recipeList;
+    public List<RecipeModel> getRecipeModelList() {
+        return recipeModelList;
     }
 }
