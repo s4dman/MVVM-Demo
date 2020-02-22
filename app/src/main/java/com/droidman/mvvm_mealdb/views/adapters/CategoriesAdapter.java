@@ -1,4 +1,4 @@
-package com.droidman.mvvm_mealdb.adapters;
+package com.droidman.mvvm_mealdb.views.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.droidman.mvvm_mealdb.R;
-import com.droidman.mvvm_mealdb.SearchRecipeActivity;
+import com.droidman.mvvm_mealdb.views.SearchRecipeActivity;
 import com.droidman.mvvm_mealdb.utils.ItemClickListener;
 
 import java.util.ArrayList;

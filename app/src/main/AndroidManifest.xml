@@ -11,17 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchRecipeActivity">
+        <activity android:name=".views.SearchRecipeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.droidman.mvvm_mealdb.CategoriesActivity" />
+                android:value="com.droidman.mvvm_mealdb.views.CategoriesActivity" />
         </activity>
-        <activity android:name=".RecipeDetailsActivity">
+        <activity android:name=".views.RecipeDetailsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.droidman.mvvm_mealdb.SearchRecipeActivity" />
+                android:value="com.droidman.mvvm_mealdb.views.SearchRecipeActivity" />
         </activity>
-        <activity android:name=".CategoriesActivity">
+        <activity android:name=".views.CategoriesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
